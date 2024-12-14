@@ -181,7 +181,10 @@ pacman -S mingw-w64-x86_64-python
 #pacman -S mingw-w64-ucrt-x86_64-python-pip
 
 pacman -S mingw-w64-ucrt-x86_64-python3-pip
+#Best pip:
+pacman -S $MINGW_PACKAGE_PREFIX-python3-pip
 
+#Or:
 curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 
 python get-pip.py
