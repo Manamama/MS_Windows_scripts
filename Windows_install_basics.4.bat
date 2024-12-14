@@ -144,7 +144,14 @@ rm -rf "$(pip show pip | awk '/Location/ {print $2}')/EXTERNALLY-MANAGED"
 
 pip config set global.break-system-packages true
 
+#torch cpu:
+pip config set global.index-url https://pypi.org/simple
+pip config set global.extra-index-url https://download.pytorch.org/whl/cpu
+pip config list
+
 # Bad: mkdir -p ~/.config/pip && echo -e "[global]\nbreak-system-packages = true" >> ~/.config/pip/pip.conf
+
+
 pacman -S --noconfirm libxml2 libxslt
 pacman -S --noconfirm libxml2-devel
 pacman -S --noconfirm gcc
@@ -154,16 +161,18 @@ export OPENSSL_ROOT_DIR=/mingw64
 pacman -S --noconfirm meson
 pacman -S --noconfirm ninja
 pacman -S --noconfirm git
-#torch cpu:
-pip config set global.index-url https://pypi.org/simple
-pip config set global.extra-index-url https://download.pytorch.org/whl/cpu
+
+pacman -S mingw-w64-x86_64-python
+pacman -S mingw-w64-x86_64-meson
+pacman -S mingw-w64-x86_64-ninja
+
 
 pip install ninja
 pip install poetry
 pip install setuptools
 pip install -v clang
 pip install --upgrade pip setuptools
-
+pip install meson-python
 
 pacman -S --noconfirm cython
 pacman -S --noconfirm mingw-w64-clang-x86_64-python-pandas
