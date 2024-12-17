@@ -173,7 +173,7 @@ pip install setuptools
 pip install -v clang
 pip install --upgrade pip setuptools
 pip install meson-python
-
+pip install lolcat
 pacman -S mingw-w64-x86_64-gcc
 pacman -S mingw-w64-x86_64-cmake
 pacman -S mingw-w64-x86_64-make
@@ -195,13 +195,15 @@ pacman -S mingw-w64-x86_64-ninja
 pacman -S --noconfirm cython cmake ninja
 pacman -S --noconfirm mingw-w64-clang-x86_64-python-pandas
 pacman -S --noconfirm base-devel
+
+pacman -S --noconfirm neofetch cpufetch 
 pacman -S --noconfirm mingw-w64-x86_64-python-numpy mingw-w64-x86_64-python-numba mingw-w64-x86_64-python-numexpr mingw-w64-x86_64-python-numpydoc mingw-w64-x86_64-python-opt_einsum mingw-w64-x86_64-python-soundfile   mingw-w64-x86_64-python-pandas  mingw-w64-x86_64-python-scipy  mingw-w64-x86_64-python-matplotlib  mingw-w64-x86_64-python-numexpr mingw-w64-x86_64-python-openpyxl
 pip install pandas -v
 pip install numpy --no-binary numpy -v
 pip install poetry
 pip install -v -U whisperx docling funasr openai-whisper open-interpreter tts
-
 pip install -U  numpy --no-binary numpy -v
+
 #For Whisperx : 
 pip install -U  pyannote.audio  -v
 
