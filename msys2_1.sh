@@ -1,4 +1,5 @@
 #MSYS2 stuff, after it got installed in Windows or anywhere
+echo Extra pip installer, version 4.1
 
 pacman -S --noconfirm python3-pip
 
@@ -27,6 +28,7 @@ pacman -S --noconfirm --needed \
   git \
   cython
 
+pacman -S --noconfirm neofetch cpufetch 
 #General version
 : '
 pacman -S --noconfirm --needed \
@@ -117,13 +119,15 @@ fi
 # Set default compiler if not already set
 echo "Setting up compilers..."
 
-#gcc first: 
-export CC=${CC:-$(command -v gcc || command -v clang)}
-export CXX=${CXX:-$(command -v g++ || command -v clang++)}
 
-#clang first: 
-export CC=${CC:-$(command -v clang || command -v gcc)}
-export CXX=${CXX:-$(command -v clang++ || command -v g++)}
+
+#gcc used: 
+export CC=$(command -v gcc)
+export CXX=$(command -v g++ )
+
+#clang used: 
+export CC=$(command -v clang )
+export CXX=$(command -v clang++ )
 
 # Show which compiler will be used
 echo "Using compiler: $CC"
@@ -196,11 +200,12 @@ export OPENSSL_ROOT_DIR=/mingw64
 
 
 pip install ninja
-pip install poetry
+pip install ctypesgen
 pip install setuptools
 pip install -v clang
 pip install --upgrade pip setuptools
 pip install meson-python
+pip install poetry
 pip install lolcat
 
 
@@ -209,12 +214,11 @@ pip install lolcat
 #python get-pip.py
 
 
-pacman -S --noconfirm neofetch cpufetch 
 pip install pandas -v
 # you may get:   ../meson.build:5:13: ERROR: Command `/tmp/pip-install-szrpx4_7/pandas_18422d9ebc7a465b94960ab5fa3dfc92/generate_version.py --print` failed with status 1.
  
 pip install numpy --no-binary numpy -v
-pip install poetry
+
 pip install -v -U whisperx docling funasr openai-whisper open-interpreter tts
 pip install -U  numpy --no-binary numpy -v
 
