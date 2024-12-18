@@ -39,6 +39,8 @@ pacman -S --noconfirm --needed \
 
 '
 
+#just in cae: 
+pacman -Sy
 # MSYS2-friendly Mingw-w64 versions
 pacman -S --noconfirm --needed \
   mingw-w64-x86_64-python \
@@ -49,8 +51,13 @@ pacman -S --noconfirm --needed \
   mingw-w64-x86_64-make \
   mingw-w64-x86_64-openssl \
   mingw-w64-x86_64-python3-pip \
-  mingw-w64-x86_64-clang
+  mingw-w64-x86_64-clang \
+  mingw-w64-x86_64-openblas \ 
+  mingw-w64-x86_64-lfortran
 
+ pacman -S --noconfirm --needed python-devel pkgconfig libatomic_ops-devel
+
+export OPENSSL_ROOT_DIR=/mingw64
 # "What is being installed?" "What dependencies am I pulling in?" and "What happens next?"
 
 echo
@@ -70,8 +77,14 @@ fi
 
 # Set default compiler if not already set
 echo "Setting up compilers..."
+
+#gcc first: 
 export CC=${CC:-$(command -v gcc || command -v clang)}
 export CXX=${CXX:-$(command -v g++ || command -v clang++)}
+
+#clang first: 
+export CC=${CC:-$(command -v clang || command -v gcc)}
+export CXX=${CXX:-$(command -v clang++ || command -v g++)}
 
 # Show which compiler will be used
 echo "Using compiler: $CC"
@@ -100,7 +113,8 @@ pacman -S --noconfirm --needed \
   mingw-w64-x86_64-python-pandas \
   mingw-w64-x86_64-python-scipy \
   mingw-w64-x86_64-python-matplotlib \
-  mingw-w64-x86_64-python-openpyxl
+  mingw-w64-x86_64-python-openpyxl \
+  mingw-w64-x86_64-libatomic_ops
 
 # Set OpenSSL root directory
 export OPENSSL_ROOT_DIR=/mingw64
