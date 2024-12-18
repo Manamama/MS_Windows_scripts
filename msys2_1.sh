@@ -58,21 +58,25 @@ mingw-w64-x86_64-toolchain \
   mingw-w64-x86_64-lfortran \
   mingw-w64-i686-pkgconf \
   mingw-w64-x86_64-vulkan-headers
+    mingw-w64-x86_64-libc++ \
+  mingw-w64-x86_64-libc++-dev 
 
 pacman -S --noconfirm --needed python-devel libatomic_ops-devel findutils
 
 
-echo "We check the include paths for C++ version:"
+export OPENSSL_ROOT_DIR=/mingw64
+
+echo "We check the include paths for Clang's libc++ version:"
 
 # Step 3: Check if we found a valid version
 if [ -z "$CXX_VERSION" ]; then
-    echo "No C++ include directories found in /mingw64/include/c++. Please check your installation."
+    echo "No Clang libc++ include directories found in /mingw64/include/c++/v1. Please check your installation."
 else
-    echo "Found C++ version: $CXX_VERSION. We set the paths thereto, but add them to your .bashrc etc later:"
+    echo "Found Clang libc++ version: $CXX_VERSION. We set the paths thereto, but add them to your .bashrc etc later:"
 
     # Step 4: Set environment variables
-    export CXXFLAGS="-I/mingw64/include/c++/$CXX_VERSION"  # Specifies additional include paths for C++ compilation.
-    export CPLUS_INCLUDE_PATH="/mingw64/include/c++/$CXX_VERSION"  # Specifically tells the C++ compiler where to find header files.
+    export CXXFLAGS="-I/mingw64/include/c++/v1"  # Specifies the Clang libc++ include path for C++ compilation.
+    export CPLUS_INCLUDE_PATH="/mingw64/include/c++/v1"  # Specifically tells the C++ compiler where to find Clang's libc++ header files.
     export CPATH="$CPLUS_INCLUDE_PATH"  # General include path for both C and C++ compilers.
 
     # Step 5: Print what has been set
@@ -80,19 +84,17 @@ else
     echo "Set CPLUS_INCLUDE_PATH to: $CPLUS_INCLUDE_PATH"
     echo "Set CPATH to: $CPATH"
 fi
+export PATH=/mingw64/bin:$PATH
 
 # Step 6: Verify the paths
-echo "Verify include paths in /mingw64/include/c++/:"
-ls /mingw64/include/c++/*
+echo "Verify Clang libc++ include paths in /mingw64/include/c++/v1:"
+ls /mingw64/include/c++/v1/
 
 # Step 7: Print all C* related environment variables
 echo "Current C* environment variables:"
 printenv | grep '^C'
 
 
-
-
-export OPENSSL_ROOT_DIR=/mingw64
 # "What is being installed?" "What dependencies am I pulling in?" and "What happens next?"
 
 echo
