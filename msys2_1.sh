@@ -28,7 +28,7 @@ pacman -S --noconfirm --needed \
   git \
   cython
 
-pacman -S --noconfirm neofetch cpufetch 
+pacman -S --noconfirm neofetch cpufetch ffmpeg 
 #General version
 : '
 pacman -S --noconfirm --needed \
@@ -208,6 +208,12 @@ pip install meson-python
 pip install poetry
 pip install lolcat
 
+#Abseil full for ONNX install:
+git clone https://github.com/abseil/abseil-cpp.git
+cd abseil-cpp
+cmake -DCMAKE_POSITION_INDEPENDENT_CODE=ON -DBUILD_SHARED_LIBS=ON ..
+make -j$(nproc)
+sudo make install
 
 #Or:
 #curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
@@ -220,7 +226,16 @@ pip install pandas -v
 pip install numpy --no-binary numpy -v
 
 pip install -v -U whisperx docling funasr openai-whisper open-interpreter tts
+#This one is often missed:
+pip install -U  onnxconverter_common
 pip install -U  numpy --no-binary numpy -v
 
 #For Whisperx : 
 pip install -U  pyannote.audio  -v
+
+
+
+git clone https://github.com/Dr-Noob/cpufetch
+cd cpufetch
+make
+./cpufetch  
