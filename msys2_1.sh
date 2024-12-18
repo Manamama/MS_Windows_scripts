@@ -41,8 +41,10 @@ pacman -S --noconfirm --needed \
 
 #just in cae: 
 pacman -Sy
+
 # MSYS2-friendly Mingw-w64 versions
 pacman -S --noconfirm --needed \
+mingw-w64-x86_64-toolchain \
   mingw-w64-x86_64-python \
   mingw-w64-x86_64-meson \
   mingw-w64-x86_64-ninja \
@@ -53,9 +55,42 @@ pacman -S --noconfirm --needed \
   mingw-w64-x86_64-python3-pip \
   mingw-w64-x86_64-clang \
   mingw-w64-x86_64-openblas \ 
-  mingw-w64-x86_64-lfortran
+  mingw-w64-x86_64-lfortran \
+  mingw-w64-i686-pkgconf \
+  mingw-w64-x86_64-vulkan-headers
 
- pacman -S --noconfirm --needed python-devel pkgconfig libatomic_ops-devel
+pacman -S --noconfirm --needed python-devel libatomic_ops-devel findutils
+
+
+echo "We check the include paths for C++ version:"
+
+# Step 3: Check if we found a valid version
+if [ -z "$CXX_VERSION" ]; then
+    echo "No C++ include directories found in /mingw64/include/c++. Please check your installation."
+else
+    echo "Found C++ version: $CXX_VERSION. We set the paths thereto, but add them to your .bashrc etc later:"
+
+    # Step 4: Set environment variables
+    export CXXFLAGS="-I/mingw64/include/c++/$CXX_VERSION"  # Specifies additional include paths for C++ compilation.
+    export CPLUS_INCLUDE_PATH="/mingw64/include/c++/$CXX_VERSION"  # Specifically tells the C++ compiler where to find header files.
+    export CPATH="$CPLUS_INCLUDE_PATH"  # General include path for both C and C++ compilers.
+
+    # Step 5: Print what has been set
+    echo "Set CXXFLAGS to: $CXXFLAGS"
+    echo "Set CPLUS_INCLUDE_PATH to: $CPLUS_INCLUDE_PATH"
+    echo "Set CPATH to: $CPATH"
+fi
+
+# Step 6: Verify the paths
+echo "Verify include paths in /mingw64/include/c++/:"
+ls /mingw64/include/c++/*
+
+# Step 7: Print all C* related environment variables
+echo "Current C* environment variables:"
+printenv | grep '^C'
+
+
+
 
 export OPENSSL_ROOT_DIR=/mingw64
 # "What is being installed?" "What dependencies am I pulling in?" and "What happens next?"
@@ -75,6 +110,8 @@ if ! command -v gcc >/dev/null && ! command -v clang >/dev/null; then
     exit 1
 fi
 
+
+
 # Set default compiler if not already set
 echo "Setting up compilers..."
 
@@ -93,13 +130,49 @@ echo "Compiler setup completed."
 # Make the environment variables persist across future sessions
 PROFILE_FILE="$HOME/.bashrc"
 
-# Check if the profile file already contains these lines
-if ! grep -q 'export CC=' "$PROFILE_FILE"; then
-    echo "Adding compiler environment variables to $PROFILE_FILE..."
-    echo "export CC=$CC" >> "$PROFILE_FILE"
-    echo "export CXX=$CXX" >> "$PROFILE_FILE"
-    echo "Environment variables for CC and CXX have been added to $PROFILE_FILE."
+#!/bin/bash
+
+# Check if Clang is installed
+if command -v clang &>/dev/null; then
+    echo "Clang is installed. Setting up LD_* paths for Clang."
+
+    # Set LD_* variables for Clang (assuming /usr/bin/clang as base directory for Clang)
+    export LD_LIBRARY_PATH="/mingw64/lib/clang/$(clang --version | head -n 1 | awk '{print $3}')/lib:$LD_LIBRARY_PATH"
+    export LDFLAGS="-L/mingw64/lib/clang/$(clang --version | head -n 1 | awk '{print $3}')/lib $LDFLAGS"
+    export LD_RUN_PATH="$LD_LIBRARY_PATH"
+
+    echo "Set LD_LIBRARY_PATH to: $LD_LIBRARY_PATH"
+    echo "Set LDFLAGS to: $LDFLAGS"
+    echo "Set LD_RUN_PATH to: $LD_RUN_PATH"
+
+elif command -v gcc &>/dev/null; then
+    echo "Clang not found. Falling back to GCC. Setting up LD_* paths for GCC."
+
+    # Set LD_* variables for GCC (assuming /usr/bin/gcc as base directory for GCC)
+    export LD_LIBRARY_PATH="/mingw64/lib/gcc/$(gcc --version | head -n 1 | awk '{print $3}' | cut -d. -f1)/$LD_LIBRARY_PATH"
+    export LDFLAGS="-L/mingw64/lib/gcc/$(gcc --version | head -n 1 | awk '{print $3}' | cut -d. -f1) $LDFLAGS"
+    export LD_RUN_PATH="$LD_LIBRARY_PATH"
+
+    echo "Set LD_LIBRARY_PATH to: $LD_LIBRARY_PATH"
+    echo "Set LDFLAGS to: $LDFLAGS"
+    echo "Set LD_RUN_PATH to: $LD_RUN_PATH"
+
+else
+    echo "Neither Clang nor GCC is installed. Please install one of them to proceed."
 fi
+
+# Final step: List all LD* variables to confirm
+echo "Printing all LD* environment variables:"
+printenv | grep '^LD'
+
+# Checking which linker is being used
+echo "Checking which linker is being used:"
+which ld
+which clang
+which clang++
+
+
+
 
 
 # Python scientific and data tools
@@ -136,6 +209,8 @@ pip install lolcat
 
 pacman -S --noconfirm neofetch cpufetch 
 pip install pandas -v
+# you may get:   ../meson.build:5:13: ERROR: Command `/tmp/pip-install-szrpx4_7/pandas_18422d9ebc7a465b94960ab5fa3dfc92/generate_version.py --print` failed with status 1.
+ 
 pip install numpy --no-binary numpy -v
 pip install poetry
 pip install -v -U whisperx docling funasr openai-whisper open-interpreter tts
