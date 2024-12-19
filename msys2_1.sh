@@ -29,7 +29,7 @@ pacman -S --noconfirm --needed \
   cython
 
 pacman -S --noconfirm neofetch cpufetch ffmpeg 
-#General version
+#Install their general versions
 : '
 pacman -S --noconfirm --needed \
 
@@ -41,10 +41,10 @@ pacman -S --noconfirm --needed \
 
 '
 
-#just in cae: 
+#Let us refresh just in case: 
 pacman -Sy
 
-# MSYS2-friendly Mingw-w64 versions
+# or the MSYS2-friendly Mingw-w64 versions
 pacman -S --noconfirm --needed \
 mingw-w64-x86_64-toolchain \
   mingw-w64-x86_64-python \
