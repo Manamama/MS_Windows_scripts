@@ -240,3 +240,9 @@ git clone https://github.com/Dr-Noob/cpufetch
 cd cpufetch
 make
 ./cpufetch  
+
+
+
+#This one is for Zorin, to avoid: WARNING: Error parsing dependencies of python-apt: Invalid version: '2.4.0-ubuntu4-zorin1'
+sudo sed -i 's/^Version: \([0-9]\+\(\.[0-9]\+\)*\).*$/Version: \1/' /usr/lib/python3/dist-packages/python_apt-*.egg-info/PKG-INFO
+
