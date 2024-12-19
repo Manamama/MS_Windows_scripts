@@ -1,5 +1,5 @@
 #MSYS2 stuff, after it got installed in Windows or anywhere
-echo Extra pip installer, version 4.1
+echo Extra pip installer, version 4.1.1
 
 pacman -S --noconfirm python3-pip
 
@@ -61,7 +61,8 @@ mingw-w64-x86_64-toolchain \
   mingw-w64-i686-pkgconf \
   mingw-w64-x86_64-vulkan-headers
     mingw-w64-x86_64-libc++ \
-  mingw-w64-x86_64-libc++-dev 
+  mingw-w64-x86_64-libc++-dev \
+  mingw-w64-x86_64-ca-certificates
 
 pacman -S --noconfirm --needed python-devel libatomic_ops-devel findutils
 
