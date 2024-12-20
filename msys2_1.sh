@@ -185,7 +185,7 @@ which clang
 which clang++
 
 
-mkdir -P Downloads
+mkdir -p Downloads
 cd Downloads
 
 
