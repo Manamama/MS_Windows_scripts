@@ -80,6 +80,7 @@ mingw-w64-x86_64-toolchain \
   pacman -S --noconfirm --needed mingw-w64-x86_64-libc++-dev
 pacman -S --noconfirm --needed python-devel libatomic_ops-devel findutils
 
+#!/bin/bash
 
 # Define the profile file to write the environment setup
 PROFILE_FILE="$HOME/.bashrc"
@@ -107,21 +108,23 @@ PROFILE_FILE="$HOME/.bashrc"
     echo "    export CXX=\$(command -v clang++)"
     echo "    echo 'Using Clang compiler: \$CC'"
     echo "    echo 'Using Clang++ compiler: \$CXX'"
-    echo "    export LD_LIBRARY_PATH='/mingw64/lib/clang/\$(clang --version | head -n 1 | awk '{print \$3}')/lib:\$LD_LIBRARY_PATH'"
-    echo "    export LDFLAGS='-L/mingw64/lib/clang/\$(clang --version | head -n 1 | awk '{print \$3}')/lib \$LDFLAGS'"
-    echo "    export LD_RUN_PATH='\$LD_LIBRARY_PATH'"
+    echo "    clang_version=\$(clang --version | head -n 1 | awk '{print \$3}')"
+    echo "    export LD_LIBRARY_PATH=\"/mingw64/lib/clang/\$clang_version/lib:\$LD_LIBRARY_PATH\""
+    echo "    export LDFLAGS=\"-L/mingw64/lib/clang/\$clang_version/lib \$LDFLAGS\""
+    echo "    export LD_RUN_PATH=\"\$LD_LIBRARY_PATH\""
     echo "elif command -v gcc &>/dev/null; then"
     echo "    export CC=\$(command -v gcc)"
     echo "    export CXX=\$(command -v g++)"
     echo "    echo 'Using GCC compiler: \$CC'"
     echo "    echo 'Using G++ compiler: \$CXX'"
-    echo "    export LD_LIBRARY_PATH='/mingw64/lib/gcc/\$(gcc --version | head -n 1 | awk '{print \$3}' | cut -d. -f1)/\$LD_LIBRARY_PATH'"
-    echo "    export LDFLAGS='-L/mingw64/lib/gcc/\$(gcc --version | head -n 1 | awk '{print \$3}' | cut -d. -f1) \$LDFLAGS'"
-    echo "    export LD_RUN_PATH='\$LD_LIBRARY_PATH'"
+    echo "    gcc_version=\$(gcc --version | head -n 1 | awk '{print \$3}' | cut -d. -f1)"
+    echo "    export LD_LIBRARY_PATH=\"/mingw64/lib/gcc/\$gcc_version:\$LD_LIBRARY_PATH\""
+    echo "    export LDFLAGS=\"-L/mingw64/lib/gcc/\$gcc_version \$LDFLAGS\""
+    echo "    export LD_RUN_PATH=\"\$LD_LIBRARY_PATH\""
     echo "else"
     echo "    echo 'Neither Clang nor GCC is installed. Please install one of them to proceed.'"
     echo "fi"
-    
+
     # 4. Final LD* Variables Check
     echo "# Printing all LD* environment variables"
     echo "printenv | grep '^LD'"
