@@ -124,6 +124,7 @@ REM Or opening new terminal many times may be needed
 
 refreshenv
 echo %PATH%
+conda install -c conda-forge exiftool
 #Must be in conda to run:
 conda activate
 
