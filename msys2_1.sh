@@ -1,5 +1,5 @@
 #MSYS2 stuff, after it got installed in Windows or anywhere
-echo Extra pip installer, version 4.1.1
+echo Extra pip installer, version 4.1.2
 
 pacman -S --noconfirm python3-pip
 
@@ -242,7 +242,14 @@ pip install -U  pyannote.audio  -v
 git clone https://github.com/Dr-Noob/cpufetch
 cd cpufetch
 make
+make install
 ./cpufetch  
+
+git clone https://github.com/Dr-Noob/peakperf
+cd peakperf
+./build.sh
+make install
+./peakperf
 
 
 
