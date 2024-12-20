@@ -52,6 +52,8 @@ mingw-w64-x86_64-toolchain \
   mingw-w64-x86_64-meson \
   mingw-w64-x86_64-ninja \
   mingw-w64-x86_64-gcc \
+  mingw-w64-x86_64-llvm-libopenmp \
+  
   mingw-w64-x86_64-cmake \
   mingw-w64-x86_64-make \
   mingw-w64-x86_64-ffmpeg \
@@ -245,7 +247,10 @@ cd cpufetch
 make
 make install
 ./cpufetch  
+cd ..
 
+
+echo That peakperf does not work for MSYS2, but FYI: 
 git clone https://github.com/Dr-Noob/peakperf
 cd peakperf
 ./build.sh
