@@ -1,7 +1,7 @@
 #MSYS2 stuff, after it got installed in Windows or anywhere. Or try this with Conda:
 
 
-echo Extra pip installer, version 4.1.5
+echo Extra pip installer, version 4.1.6
 
 
 # Update PATH to include necessary directories
@@ -287,12 +287,18 @@ pip install pipwin
 
 
 
-#Pytorch: 
+#Pytorch, you may try this, but requires admin install of Microsoft Visual C++:
+: '
 git clone https://github.com/smalltalkman/mingw-w64-python-pytorch.git
 cd mingw-w64-python-pytorch
 bash  ./utils/build.sh -64
 
 cd ..
+
+
+#You may try tricking it with pytorch Git clone and python setup.py build --cmake , etc. 
+'
+
 
 #Abseil full for ONNX install:
 git clone https://github.com/abseil/abseil-cpp.git
