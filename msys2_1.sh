@@ -97,7 +97,7 @@ PROFILE_FILE="$HOME/.bashrc"
     echo "CONDA_INIT_SCRIPT=\"\${MINICONDA_PATH}/etc/profile.d/conda.sh\""
     echo "if [ -f \"\$CONDA_INIT_SCRIPT\" ]; then"
     echo "    source \"\$CONDA_INIT_SCRIPT\""
-    echo "    conda activate base"
+    echo "    #conda activate base"
     echo "fi"
 
     # 3. C Compiler setup
