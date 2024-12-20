@@ -53,6 +53,9 @@ mingw-w64-x86_64-toolchain \
   mingw-w64-x86_64-gcc \
   mingw-w64-x86_64-cmake \
   mingw-w64-x86_64-make \
+  mingw-w64-x86_64-ffmpeg \
+  mingw-w64-x86_64-make \
+  
   mingw-w64-x86_64-openssl \
   mingw-w64-x86_64-python3-pip \
   mingw-w64-x86_64-clang \
