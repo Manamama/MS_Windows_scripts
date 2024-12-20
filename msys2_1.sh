@@ -1,5 +1,5 @@
 #MSYS2 stuff, after it got installed in Windows or anywhere
-echo Extra pip installer, version 4.1.2
+echo Extra pip installer, version 4.1.3
 
 pacman -S --noconfirm python3-pip
 
@@ -28,7 +28,7 @@ pacman -S --noconfirm --needed \
   git \
   cython
 
-pacman -S --noconfirm neofetch cpufetch ffmpeg 
+pacman -S --noconfirm neofetch  
 #Install their general versions
 : '
 pacman -S --noconfirm --needed \
