@@ -1,5 +1,14 @@
-#MSYS2 stuff, after it got installed in Windows or anywhere
-echo Extra pip installer, version 4.1.4
+#MSYS2 stuff, after it got installed in Windows or anywhere. Or try this with Conda:
+
+
+echo Extra pip installer, version 4.1.5
+
+
+# Update PATH to include necessary directories
+export PATH="$PATH:$LOCALAPPDATA/miniconda3:$LOCALAPPDATA/miniconda3/Library/bin:$LOCALAPPDATA/Microsoft/WindowsApps:/c/ProgramData/chocolatey/bin:/c/ProgramData/chocoportable/bin:$LOCALAPPDATA/miniconda3/Scripts:$USERPROFILE/AppData/Local/Programs/Git/bin:$LOCALAPPDATA/Chocolatey:$LOCALAPPDATA/chocolatey/lib/make/tools/install/bin:/c/Windows/system32:/c/Windows:/c/Windows/System32/Wbem:/c/Windows/System32/WindowsPowerShell/v1.0:/c/Windows/System32/OpenSSH:$USERPROFILE/Chocolatey/bin:$LOCALAPPDATA/Microsoft/WindowsApps:$USERPROFILE/Documents/anaconda3/scripts:$PROGRAMDATA/chocolatey/bin:$USERPROFILE/Documents/Msys64/mingw64/bin"
+
+# Add Python scripts directory to PATH
+export PATH="$PATH:$USERPROFILE/AppData/Local/Packages/PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0/LocalCache/local-packages/Python312/Scripts"
 
 pacman -S --noconfirm   mingw-w64-x86_64-python-pip
 
