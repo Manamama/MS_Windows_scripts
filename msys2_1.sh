@@ -81,8 +81,66 @@ mingw-w64-x86_64-toolchain \
 pacman -S --noconfirm --needed python-devel libatomic_ops-devel findutils
 
 
-export OPENSSL_ROOT_DIR=/mingw64
-export PATH=/mingw64/bin:$PATH
+# Define the profile file to write the environment setup
+PROFILE_FILE="$HOME/.bashrc"
+
+# Prepare the profile setup
+{
+    # 1. Set OpenSSL and PATH
+    echo "export OPENSSL_ROOT_DIR=/mingw64"
+    echo "export PATH=/mingw64/bin:\$PATH"
+
+    # 2. Conda initialization
+    echo "# Conda initialization"
+    echo "MINICONDA_PATH=\"\${USERPROFILE}/AppData/Local/miniconda3\""
+    echo "CONDA_INIT_SCRIPT=\"\${MINICONDA_PATH}/etc/profile.d/conda.sh\""
+    echo "if [ -f \"\$CONDA_INIT_SCRIPT\" ]; then"
+    echo "    source \"\$CONDA_INIT_SCRIPT\""
+    echo "    conda activate base"
+    echo "fi"
+
+    # 3. C Compiler setup
+    echo "# C Compiler setup"
+    echo "echo 'Checking for available C compilers...'"
+    echo "if command -v clang &>/dev/null; then"
+    echo "    export CC=\$(command -v clang)"
+    echo "    export CXX=\$(command -v clang++)"
+    echo "    echo 'Using Clang compiler: \$CC'"
+    echo "    echo 'Using Clang++ compiler: \$CXX'"
+    echo "    export LD_LIBRARY_PATH='/mingw64/lib/clang/\$(clang --version | head -n 1 | awk '{print \$3}')/lib:\$LD_LIBRARY_PATH'"
+    echo "    export LDFLAGS='-L/mingw64/lib/clang/\$(clang --version | head -n 1 | awk '{print \$3}')/lib \$LDFLAGS'"
+    echo "    export LD_RUN_PATH='\$LD_LIBRARY_PATH'"
+    echo "elif command -v gcc &>/dev/null; then"
+    echo "    export CC=\$(command -v gcc)"
+    echo "    export CXX=\$(command -v g++)"
+    echo "    echo 'Using GCC compiler: \$CC'"
+    echo "    echo 'Using G++ compiler: \$CXX'"
+    echo "    export LD_LIBRARY_PATH='/mingw64/lib/gcc/\$(gcc --version | head -n 1 | awk '{print \$3}' | cut -d. -f1)/\$LD_LIBRARY_PATH'"
+    echo "    export LDFLAGS='-L/mingw64/lib/gcc/\$(gcc --version | head -n 1 | awk '{print \$3}' | cut -d. -f1) \$LDFLAGS'"
+    echo "    export LD_RUN_PATH='\$LD_LIBRARY_PATH'"
+    echo "else"
+    echo "    echo 'Neither Clang nor GCC is installed. Please install one of them to proceed.'"
+    echo "fi"
+    
+    # 4. Final LD* Variables Check
+    echo "# Printing all LD* environment variables"
+    echo "printenv | grep '^LD'"
+
+    # 5. Checking which linker is being used
+    echo "# Checking which linker is being used"
+    echo "which ld"
+    echo "which clang"
+    echo "which clang++"
+} >> "$PROFILE_FILE"
+
+# Apply the changes immediately
+source "$PROFILE_FILE"
+
+# Final confirmation
+echo "All configurations have been written to $PROFILE_FILE. Conda will activate automatically on future sessions."
+
+
+
 
 echo "We check the include paths for Clang's libc++ version:"
 
@@ -148,9 +206,6 @@ export CXX=$(command -v clang++ )
 # Show which compiler will be used
 echo "Using compiler: $CC"
 echo "Compiler setup completed."
-
-# Make the environment variables persist across future sessions
-PROFILE_FILE="$HOME/.bashrc"
 
 #!/bin/bash
 
