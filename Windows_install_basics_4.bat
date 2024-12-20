@@ -124,5 +124,11 @@ REM Or opening new terminal many times may be needed
 
 refreshenv
 echo %PATH%
+#Must be in conda to run:
+conda activate
 
+echo Now install the lot from Unix: https://github.com/Manamama/MS_Windows_scripts/blob/main/msys2_1.sh and try : https://github.com/Manamama/Ubuntu_Scripts_1/blob/main/docling_me.sh
+
+echo
+echo And pray that it works. 
 
