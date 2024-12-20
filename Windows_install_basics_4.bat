@@ -107,7 +107,7 @@ start "" "C:\ProgramData\chocoportable\bin\notepad++.exe"
 @echo off
 echo - Run this file manually whenever needed, and open new terminal too:
 REM Update PATH to include necessary directories
-setx PATH "%LOCALAPPDATA%\miniconda3\;%LOCALAPPDATA%\miniconda3\Library\bin\;%LOCALAPPDATA%\Microsoft\WindowsApps;C:\ProgramData\chocoportable\bin;%LOCALAPPDATA%\miniconda3\Scripts;%USERPROFILE%\AppData\Local\Programs\Git\bin;%LOCALAPPDATA%\Chocolatey; C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;%USERPROFILE%\Chocolatey\bin\;%LOCALAPPDATA%\Microsoft\WindowsApps\;%USERPROFILE%\Documents\anaconda3\scripts;%PROGRAMDATA%\chocolatey\bin\;C:\Users\IFP\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\Scripts\;C:\ProgramData\mingw64\mingw64\bin\"
+setx PATH "%LOCALAPPDATA%\miniconda3\;%LOCALAPPDATA%\miniconda3\Library\bin\;%LOCALAPPDATA%\Microsoft\WindowsApps;C:\ProgramData\chocoportable\bin;%LOCALAPPDATA%\miniconda3\Scripts;%USERPROFILE%\AppData\Local\Programs\Git\bin;%LOCALAPPDATA%\Chocolatey; C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;%USERPROFILE%\Chocolatey\bin\;%LOCALAPPDATA%\Microsoft\WindowsApps\;%USERPROFILE%\Documents\anaconda3\scripts;%PROGRAMDATA%\chocolatey\bin\;C:\Users\IFP\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\Scripts\;C:\ProgramData\mingw64\mingw64\bin\:$USERPROFILE\Documents\Msys64\mingw64\bin"
 
 
 REM plus: %PATH%
@@ -121,12 +121,6 @@ REM Or opening new terminal many times may be needed
 
 
 #exit
-
-# Update PATH to include necessary directories
-export PATH="$PATH:$LOCALAPPDATA/miniconda3:$LOCALAPPDATA/miniconda3/Library/bin:$LOCALAPPDATA/Microsoft/WindowsApps:/c/ProgramData/chocolatey/bin:/c/ProgramData/chocoportable/bin:$LOCALAPPDATA/miniconda3/Scripts:$USERPROFILE/AppData/Local/Programs/Git/bin:$LOCALAPPDATA/Chocolatey:$LOCALAPPDATA/chocolatey/lib/make/tools/install/bin:/c/Windows/system32:/c/Windows:/c/Windows/System32/Wbem:/c/Windows/System32/WindowsPowerShell/v1.0:/c/Windows/System32/OpenSSH:$USERPROFILE/Chocolatey/bin:$LOCALAPPDATA/Microsoft/WindowsApps:$USERPROFILE/Documents/anaconda3/scripts:$PROGRAMDATA/chocolatey/bin"
-
-# Add Python scripts directory to PATH
-export PATH="$PATH:$USERPROFILE/AppData/Local/Packages/PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0/LocalCache/local-packages/Python312/Scripts"
 
 refreshenv
 echo %PATH%
