@@ -1,5 +1,5 @@
 #MSYS2 stuff, after it got installed in Windows or anywhere
-echo Extra pip installer, version 4.1.3
+echo Extra pip installer, version 4.1.4
 
 pacman -S --noconfirm   mingw-w64-x86_64-python-pip
 
@@ -52,28 +52,28 @@ mingw-w64-x86_64-toolchain \
   mingw-w64-x86_64-meson \
   mingw-w64-x86_64-ninja \
   mingw-w64-x86_64-gcc \
-  mingw-w64-x86_64-llvm-libopenmp \
-  
+  mingw-w64-x86_64-libopenmpt \
   mingw-w64-x86_64-cmake \
   mingw-w64-x86_64-make \
   mingw-w64-x86_64-ffmpeg \
   mingw-w64-x86_64-make \
-  
   mingw-w64-x86_64-openssl \
   mingw-w64-x86_64-python3-pip \
   mingw-w64-x86_64-clang \
-  mingw-w64-x86_64-openblas \ 
-  mingw-w64-x86_64-lfortran \
-  mingw-w64-i686-pkgconf \
-  mingw-w64-x86_64-vulkan-headers
-    mingw-w64-x86_64-libc++ \
-  mingw-w64-x86_64-libc++-dev \
-  mingw-w64-x86_64-ca-certificates
+  mingw-w64-x86_64-openblas \
+  mingw-w64-x86_64-vulkan-headers \
+  mingw-w64-x86_64-cmake \ 
+  mingw-w64-x86_64-ca-certificates \
 
+
+  pacman -S --noconfirm --needed mingw-w64-x86_64-libc++    mingw64/mingw-w64-x86_64-lfortran    mingw-w64-x86_64-pkgconf
+
+  pacman -S --noconfirm --needed mingw-w64-x86_64-libc++-dev
 pacman -S --noconfirm --needed python-devel libatomic_ops-devel findutils
 
 
 export OPENSSL_ROOT_DIR=/mingw64
+export PATH=/mingw64/bin:$PATH
 
 echo "We check the include paths for Clang's libc++ version:"
 
@@ -185,7 +185,8 @@ which clang
 which clang++
 
 
-
+mkdir -P Downloads
+cd Downloads
 
 
 # Python scientific and data tools
@@ -214,6 +215,17 @@ pip install --upgrade pip setuptools
 pip install meson-python
 pip install poetry
 pip install lolcat
+pip install pipwin
+
+
+
+
+#Pytorch: 
+git clone https://github.com/smalltalkman/mingw-w64-python-pytorch.git
+cd mingw-w64-python-pytorch
+bash  ./utils/build.sh -64
+
+cd ..
 
 #Abseil full for ONNX install:
 git clone https://github.com/abseil/abseil-cpp.git
@@ -221,6 +233,10 @@ cd abseil-cpp
 cmake -DCMAKE_POSITION_INDEPENDENT_CODE=ON -DBUILD_SHARED_LIBS=ON ..
 make -j$(nproc)
 sudo make install
+make install 
+cd ..
+
+
 
 #Or:
 #curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
