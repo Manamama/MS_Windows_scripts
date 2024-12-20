@@ -1,7 +1,7 @@
 #MSYS2 stuff, after it got installed in Windows or anywhere
 echo Extra pip installer, version 4.1.3
 
-pacman -S --noconfirm python3-pip
+pacman -S --noconfirm   mingw-w64-x86_64-python-pip
 
 pip show pip | awk '/Location/ {print $2"/site-packages"}'
 
@@ -26,8 +26,9 @@ pacman -S --noconfirm --needed \
   libxml2-devel \
   libxslt-devel \
   git \
-  cython
-
+  mingw-w64-x86_64-cython \
+  mingw-w64-x86_64-libxslt \
+  mingw-w64-x86_64-libxml2  \
 pacman -S --noconfirm neofetch  
 #Install their general versions
 : '
