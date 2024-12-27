@@ -1,7 +1,7 @@
 #MSYS2 stuff, after it got installed in Windows or anywhere. Or try this with Conda:
 
 
-echo Extra pip installer, version 4.1.6
+echo Extra pip installer, version 4.1.7
 
 
 # Update PATH to include necessary directories
@@ -351,3 +351,11 @@ make install
 #This one is for Zorin, to avoid: WARNING: Error parsing dependencies of python-apt: Invalid version: '2.4.0-ubuntu4-zorin1'
 sudo sed -i 's/^Version: \([0-9]\+\(\.[0-9]\+\)*\).*$/Version: \1/' /usr/lib/python3/dist-packages/python_apt-*.egg-info/PKG-INFO
 
+: '
+# See: https://github.com/abetlen/llama-cpp-python
+Error: Can't find 'nmake' or 'CMAKE_C_COMPILER'
+If you run into issues where it complains it can't find 'nmake' '?' or CMAKE_C_COMPILER, you can extract w64devkit as mentioned in llama.cpp repo and add those manually to CMAKE_ARGS before running pip install:
+
+$env:CMAKE_GENERATOR = "MinGW Makefiles"
+$env:CMAKE_ARGS = "-DGGML_OPENBLAS=on -DCMAKE_C_COMPILER=C:/w64devkit/bin/gcc.exe -DCMAKE_CXX_COMPILER=C:/w64devkit/bin/g++.exe"
+' 
