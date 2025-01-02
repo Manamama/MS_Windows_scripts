@@ -1,5 +1,5 @@
 #Meta info - private list of how to surive in MS Windows OS in a non-admin environment, messy as hell for now
-#Ver 4.1.0
+#Ver 4.1.1
 #Note to self: fuller info and tricks may be on the Droid, SD Card, Installs ... folder
 #REM - see also here : https://docs.google.com/document/d/1FtANN49gR8vE4B7cskDL4Yajw6cRQ7Fw8VrJugRGlaQ/edit?pli=1&tab=t.0  , for now
 #REM - see C:\Users\IFP\Documents\Portable_when_on_Public_comps\_Meta_scripts etc. 
@@ -36,8 +36,9 @@ echo %PATH%
 REM choco install winget --force
 
 
-choco install wget ffmpeg nano exiftool mpv.portable note
+choco install wget ffmpeg nano exiftool llvm.portable  mpv.portable note dotnetcore-runtime.portable
 
+#choco install llvm.portable --force 
 REM winget install python
 
 REM For git:
