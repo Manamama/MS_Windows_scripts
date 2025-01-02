@@ -2,7 +2,7 @@
 #Ver 4.1.1
 #Note to self: fuller info and tricks may be on the Droid, SD Card, Installs ... folder
 #REM - see also here : https://docs.google.com/document/d/1FtANN49gR8vE4B7cskDL4Yajw6cRQ7Fw8VrJugRGlaQ/edit?pli=1&tab=t.0  , for now
-#REM - see C:\Users\IFP\Documents\Portable_when_on_Public_comps\_Meta_scripts etc. 
+#REM - see C:\Users\IFP\Documents\Portable_when_on_Public_comps\_Meta_scripts etc.  
 
 
 Windows Registry Editor Version 5.00
@@ -38,14 +38,13 @@ REM choco install winget --force
 
 choco install wget ffmpeg nano exiftool llvm.portable  mpv.portable note dotnetcore-runtime.portable
 
- numpy
 
 #choco install llvm.portable --force 
 REM winget install python
 set CC=clang
 set CCX=clang++
 
-chico install numpy
+choco install numpy
 
 REM For git:
 winget install --id Git.Git -e --source winget
