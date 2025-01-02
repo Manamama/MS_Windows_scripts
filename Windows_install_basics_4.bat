@@ -38,8 +38,14 @@ REM choco install winget --force
 
 choco install wget ffmpeg nano exiftool llvm.portable  mpv.portable note dotnetcore-runtime.portable
 
+ numpy
+
 #choco install llvm.portable --force 
 REM winget install python
+set CC=clang
+set CCX=clang++
+
+chico install numpy
 
 REM For git:
 winget install --id Git.Git -e --source winget
