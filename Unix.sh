@@ -1,9 +1,9 @@
 #First things first if e.g. booting off ISO file
 
-sudo apt install cpufetch
-sudo apt install neofetch
+sudo apt install cpufetch -y
+sudo apt install neofetch - y
 cpufetch
-neofetch -off
+neofetch --off
 sudo apt install git cmake clang -y 
 sudo apt install lobomp-dev -y 
 
