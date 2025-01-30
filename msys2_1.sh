@@ -71,8 +71,10 @@ mingw-w64-x86_64-toolchain \
   mingw-w64-x86_64-clang \
   mingw-w64-x86_64-openblas \
   mingw-w64-x86_64-vulkan-headers \
+  mingw-w64-x86_64-vulkan-devel \
   mingw-w64-x86_64-cmake \ 
   mingw-w64-x86_64-ca-certificates \
+  mingw-w64-x86_64-shaderc
 
 
   pacman -S --noconfirm --needed mingw-w64-x86_64-libc++    mingw64/mingw-w64-x86_64-lfortran    mingw-w64-x86_64-pkgconf
