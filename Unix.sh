@@ -20,3 +20,7 @@ git clone https://github.com/Dr-noob/peakperf
 cd peakperf
 ./build.sh
 ./peakperf
+sudo add-apt-repository ppa:danielrichter2007/grub-customizer -y
+
+sudo apt install grub-customizer -y
+
