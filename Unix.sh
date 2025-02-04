@@ -16,10 +16,13 @@ sudo apt install libomp-18-dev -y
 
 cd Downloads
 git clone https://github.com/Dr-noob/peakperf
+
+
+cd peakperf
+
 #In CmakeList.txt comment out #Set (SANITY_FLAGS)
 sed -i '/set(SANITY_FLAGS/ s/^/#/' CMakeLists.txt
 
-cd peakperf
 ./build.sh
 ./peakperf
 sudo add-apt-repository ppa:danielrichter2007/grub-customizer -y
