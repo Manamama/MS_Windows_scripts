@@ -1,5 +1,5 @@
 #First things first if e.g. booting off ISO file
-
+sudo apt update
 sudo apt install cpufetch -y
 sudo apt install neofetch - y
 cpufetch
