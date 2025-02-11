@@ -91,7 +91,7 @@ cd ~/Downloads
 
 	unzip platform-tools-latest-linux.zip
 
-	sudo cp -R -f platform-tools/* /bin/*
+	sudo cp -R -f platform-tools/* /usr/bin/*
 
 	rm -rf platform-tools/
 	rm platform-tools-latest-linux.zip
