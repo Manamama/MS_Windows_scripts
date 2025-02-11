@@ -73,7 +73,10 @@ sed -i '/set(SANITY_FLAGS/ s/^/#/' CMakeLists.txt
 
 ./build.sh
 ./peakperf
+sudo apt clean
 sudo add-apt-repository ppa:danielrichter2007/grub-customizer -y
-
 sudo apt install grub-customizer -y
+sudo apt install python3-pip -y 
+sudo apt clean
+sudo apt install scrpcy -y 
 
