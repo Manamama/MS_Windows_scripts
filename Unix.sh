@@ -93,8 +93,8 @@ cd ~/Downloads
 
 	sudo cp -R -f platform-tools/* /usr/bin/*
 
-	rm -rf platform-tools/
-	rm platform-tools-latest-linux.zip
+	#rm -rf platform-tools/
+	#rm platform-tools-latest-linux.zip
 
 	echo "install latest platform success"
 
