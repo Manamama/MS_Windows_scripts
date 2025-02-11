@@ -87,7 +87,6 @@ sudo apt install scrcpy -y
 # https://gist.github.com/Ericwyn/e89553d8dfcb9fc9066da506d9e6fd93
 cd ~/Downloads
 
-if [ `id -u` -eq 0 ]; then
 	wget https://dl.google.com/android/repository/platform-tools-latest-linux.zip
 
 	unzip platform-tools-latest-linux.zip
@@ -101,6 +100,3 @@ if [ `id -u` -eq 0 ]; then
 
 	/bin/fastboot --version
 
-else
-	echo "please use 'sudo' to run the install script"
-fi
