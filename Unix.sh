@@ -27,6 +27,10 @@ if [ -b /dev/sda2 ]; then
         
         # Create swapfile of 8GB size (8*1024*1024=8388608 KB)
         swapfile="/media/zorin/Dysk_02/swapfile_linux1.bin"
+	
+        # Enable the swapfile
+        sudo swapon "$swapfile"
+	#Create the swapfile too, just in case it was not:
         sudo dd if=/dev/zero of="$swapfile" bs=1M count=8192 status=progress
         
         # Set correct permissions for the swapfile
