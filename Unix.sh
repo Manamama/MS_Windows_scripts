@@ -58,7 +58,7 @@ sudo apt install lobomp-dev -y
 
 #Install clang-18
 bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
-sudo apt install libomp-dev -y
+sudo apt install libomp-dev libssl-dev adb fastboot -y
 #Install OpenMP 18, for llama.cpp etc.:
 sudo apt install libomp-18-dev -y 
 
@@ -79,4 +79,23 @@ sudo apt install grub-customizer -y
 sudo apt install python3-pip -y 
 sudo apt clean
 sudo apt install scrpcy -y 
+# https://gist.github.com/Ericwyn/e89553d8dfcb9fc9066da506d9e6fd93
+cd ~/Downloads
 
+if [ `id -u` -eq 0 ]; then
+	wget https://dl.google.com/android/repository/platform-tools-latest-linux.zip
+
+	unzip platform-tools-latest-linux.zip
+
+	sudo cp -R -f platform-tools/* /bin/*
+
+	rm -rf platform-tools/
+	rm platform-tools-latest-linux.zip
+
+	echo "install latest platform success"
+
+	/bin/fastboot --version
+
+else
+	echo "please use 'sudo' to run the install script"
+fi
