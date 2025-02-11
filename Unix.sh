@@ -6,11 +6,14 @@ gnome-system-monitor &
 # Check if /dev/sda2 exists
 if [ -b /dev/sda2 ]; then
     echo "/dev/sda2 exists."
-    
+    sudo mkdir -p /media/zorin/Dysk_02
+    sudo mkdir -p /media/zorin/Dysk_03
     # Mount /dev/sda2 to /media/zorin/Dysk_02 if it's not already mounted
     if ! mountpoint -q /media/zorin/Dysk_02; then
         echo "Mounting /dev/sda2 to /media/zorin/Dysk_02..."
-        sudo mount /dev/sda2 /media/zorin/Dysk_02
+        #sudo mount /dev/sda2 /media/zorin/Dysk_02
+        sudo mount -t ntfs-36 -0 remove_hiberfile /dev/sda2 /media/zorin/Dysk_02
+    
     else
         echo "/dev/sda2 is already mounted."
     fi
