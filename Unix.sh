@@ -82,6 +82,7 @@ sudo add-apt-repository ppa:danielrichter2007/grub-customizer -y
 sudo apt install grub-customizer -y
 sudo apt install python3-pip -y 
 sudo apt clean
+sudo apt autoremove
 sudo apt install scrpcy -y 
 # https://gist.github.com/Ericwyn/e89553d8dfcb9fc9066da506d9e6fd93
 cd ~/Downloads
