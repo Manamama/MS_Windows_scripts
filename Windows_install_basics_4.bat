@@ -1,9 +1,43 @@
 #Meta info - private list of how to surive in MS Windows OS in a non-admin environment, messy as hell for now
-#Ver 4.1.1
+#Ver 4.1.2
 #Note to self: fuller info and tricks may be on the Droid, SD Card, Installs ... folder
 #REM - see also here : https://docs.google.com/document/d/1FtANN49gR8vE4B7cskDL4Yajw6cRQ7Fw8VrJugRGlaQ/edit?pli=1&tab=t.0  , for now
 #REM - see C:\Users\IFP\Documents\Portable_when_on_Public_comps\_Meta_scripts etc.  
+# command:
 
+bash
+
+shutdown /r/fw/f/to
+
+Here's what the command means:
+
+/r: Restarts the computer.
+
+/fw: Instructs the system to restart into the firmware (BIOS/UEFI).
+
+1. Open Settings:
+
+Press Windows + I to open Settings.
+
+2. Navigate to the Update & Security Section:
+
+Go to Update & Security.
+
+3. Access Recovery Options:
+
+In the left sidebar, click on Recovery
+
+Under Advanced startup, click on Restart now. This will reboot your PC with extra options.
+
+4. Choose UEFI Firmware Settings:
+
+After your PC restarts, you'll be presented with a blue screen with several options.
+
+• Click on Troubleshoot > Advanced options > UEFI Firmware Settings.
+
+Click Restart, and your PC will boot into the BIOS/UEFI settings.
+
+This method should work on all modern versions of Windows 10 and will allow you
 
 Windows Registry Editor Version 5.00
 
