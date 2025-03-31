@@ -100,3 +100,9 @@ cd ~/Downloads
 
 	/bin/fastboot --version
 
+#llama:
+git clone https://github.com/ggerganov/llama.cpp
+cmake llama.cpp -B llama.cpp/build     -DBUILD_SHARED_LIBS=OFF  -DLLAMA_CURL=ON
+
+cmake --install llama.cpp/build
+
