@@ -100,6 +100,8 @@ cd ~/Downloads
 
 	/bin/fastboot --version
 
+wget https://github.com/xxxserxxx/gotop/releases/download/v4.2.0/gotop_v4.2.0_linux_amd64.deb
+sudo dpkg -i gotop_v4.2.0_linux_amd64.deb
 #llama:
 git clone https://github.com/ggerganov/llama.cpp
 cmake llama.cpp -B llama.cpp/build     -DBUILD_SHARED_LIBS=OFF  -DLLAMA_CURL=ON
