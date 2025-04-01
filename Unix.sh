@@ -106,5 +106,6 @@ sudo dpkg -i gotop_v4.2.0_linux_amd64.deb
 git clone https://github.com/ggerganov/llama.cpp
 cmake llama.cpp -B llama.cpp/build     -DBUILD_SHARED_LIBS=OFF  -DLLAMA_CURL=ON
 
-cmake --install llama.cpp/build
+sudo cmake --install llama.cpp/build
+# sudo cmake --build llama.cpp/build --target install
 
