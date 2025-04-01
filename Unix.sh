@@ -53,7 +53,7 @@ fi
 
 sudo apt update
 sudo apt install cpufetch -y
-sudo apt install neofetch - y
+sudo apt install neofetch -y
 cpufetch
 neofetch --off
 sudo apt install git cmake clang -y 
