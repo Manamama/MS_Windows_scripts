@@ -109,3 +109,6 @@ cmake llama.cpp -B llama.cpp/build     -DBUILD_SHARED_LIBS=OFF  -DLLAMA_CURL=ON
 sudo cmake --install llama.cpp/build
 # sudo cmake --build llama.cpp/build --target install
 
+#google gh stuff:
+
+mkdir -p /home/abovetrans/.local/var/lib/dpkg    # And install there for permanence: sudo dpkg --instdir=/home/abovetrans/.local --admindir=/home/abovetrans/.local/var/lib/dpkg --no-triggers -i gotop_v4.2.0_linux_amd64.deb                                                                             #You can bind /home, but not advised, as it is a temp, ephemeral folder:                            # sudo mount --bind /root/home2 /home             sudo mkdir -p /root/home_extended/.cache          echo Mounting --bind /root/home_extended/.cache ~/.cache for more space....                         sudo mount --bind /root/home_extended/.cache ~/.cache                                               sudo chown -R abovetrans:abovetrans /root/home_extended/.cache
