@@ -104,9 +104,11 @@ wget https://github.com/xxxserxxx/gotop/releases/download/v4.2.0/gotop_v4.2.0_li
 sudo dpkg -i gotop_v4.2.0_linux_amd64.deb
 #llama:
 git clone https://github.com/ggerganov/llama.cpp
-cmake llama.cpp -B llama.cpp/build     -DBUILD_SHARED_LIBS=OFF  -DLLAMA_CURL=ON
+cmake llama.cpp -B llama.cpp/build     -DBUILD_SHARED_LIBS=OFF  -DLLAMA_CURL=ON 
+# If no OpenMP found, use: 
+#cmake -B build   -DOpenMP_C_FLAGS="-fopenmp"   -DOpenMP_CXX_FLAGS="-fopenmp"   -DOpenMP_C_LIB_NAMES="libomp"  -DOpenMP_CXX_LIB_NAMES="libomp" 
 
-sudo cmake --install llama.cpp/build
+cmake --install llama.cpp/build
 # sudo cmake --build llama.cpp/build --target install
 
 # or: pip install llama-cpp-python -U
