@@ -55,67 +55,14 @@ fi
 
 
 sudo apt update
-sudo apt install cpufetch -y
+sudo apt install git -y
 sudo apt install neofetch -y
-cpufetch
-neofetch --off
-sudo apt install git cmake clang -y 
+ 
+neofetch --off 
 
+git clone https://github.com/Manamama/Ubuntu_Scripts_1
 
-
-#Install clang-18
-bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
-sudo apt install libomp-dev libssl-dev adb fastboot -y
-#Install OpenMP 18, for llama.cpp etc.:
-#sudo apt install libomp-18-dev -y 
-
-cd Downloads
-git clone https://github.com/Dr-noob/peakperf
-
-
-cd peakperf
-
-#In CmakeList.txt comment out #Set (SANITY_FLAGS)
-sed -i '/set(SANITY_FLAGS/ s/^/#/' CMakeLists.txt
-
-./build.sh
-./peakperf
-sudo apt clean
-sudo add-apt-repository ppa:danielrichter2007/grub-customizer -y
-sudo apt install grub-customizer -y
-sudo apt install python3-pip -y 
-sudo apt clean
-sudo apt autoremove -y
-sudo apt install scrcpy -y 
-# https://gist.github.com/Ericwyn/e89553d8dfcb9fc9066da506d9e6fd93
-cd ~/Downloads
-
-	wget https://dl.google.com/android/repository/platform-tools-latest-linux.zip
-
-	unzip platform-tools-latest-linux.zip
-
-	sudo cp -R -f platform-tools/* /usr/bin/*
-
-	#rm -rf platform-tools/
-	#rm platform-tools-latest-linux.zip
-
-	echo "install latest platform success"
-
-	/bin/fastboot --version
-
-wget https://github.com/xxxserxxx/gotop/releases/download/v4.2.0/gotop_v4.2.0_linux_amd64.deb
-sudo dpkg -i gotop_v4.2.0_linux_amd64.deb
-#llama:
-git clone https://github.com/ggerganov/llama.cpp
-cmake llama.cpp -B llama.cpp/build     -DBUILD_SHARED_LIBS=OFF  -DLLAMA_CURL=ON 
-# If no OpenMP found, use: 
-#cmake -B build   -DOpenMP_C_FLAGS="-fopenmp"   -DOpenMP_CXX_FLAGS="-fopenmp"   -DOpenMP_C_LIB_NAMES="libomp"  -DOpenMP_CXX_LIB_NAMES="libomp" 
-
-cmake --install llama.cpp/build
-# sudo cmake --build llama.cpp/build --target install
-
-# or: pip install llama-cpp-python -U
-
-#google gh stuff:
-
-#mkdir -p /home/abovetrans/.local/var/lib/dpkg    # And install there for permanence: sudo dpkg --instdir=/home/abovetrans/.local --admindir=/home/abovetrans/.local/var/lib/dpkg --no-triggers -i gotop_v4.2.0_linux_amd64.deb                                                                             #You can bind /home, but not advised, as it is a temp, ephemeral folder:                            # sudo mount --bind /root/home2 /home             sudo mkdir -p /root/home_extended/.cache          echo Mounting --bind /root/home_extended/.cache ~/.cache for more space....                         sudo mount --bind /root/home_extended/.cache ~/.cache                                               sudo chown -R abovetrans:abovetrans /root/home_extended/.cache
+bash Ubuntu_Scripts_1/install_basic_ubuntu_set_1.sh
+echo
+echo Finished. 
+ 
