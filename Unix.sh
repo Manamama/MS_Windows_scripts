@@ -1,4 +1,7 @@
 #First things first if e.g. booting off ISO file
+# See also: https://github.com/Manamama/Ubuntu_Scripts_1/blob/main/install_basic_ubuntu_set_1.sh
+
+
 gnome-system-monitor &
 
 
